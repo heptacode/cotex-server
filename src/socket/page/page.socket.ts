@@ -14,6 +14,14 @@ const socketRouter: SocketRouter = (io: SocketIO.Server, socket: SocketIO.Socket
 
 		socket.emit("joinRoom", page);
 	});
+	// pageId
+	socket.on("update", async (data) => {
+		let page = await Page.findById(data.pageId);
+		page.permission = data.permission;
+		page.cell = data.cell;
+		if (!page) return;
+		io.sockets.to(data.pageId).emit("update", await page.save());
+	});
 };
 
 export default socketRouter;
