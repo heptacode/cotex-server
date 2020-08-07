@@ -6,10 +6,12 @@ const router = Router();
 
 router.post("/", PassportManager.authenticate(), pageController.createPage);
 
+router.get("/:id", PassportManager.authenticate(), pageController.getPage);
+
 router.post("/my-page", PassportManager.authenticate(), pageController.myPage);
 router.post("/:id/invite", PassportManager.authenticate(), pageController.invitePage);
 router.post("/:id/kick", PassportManager.authenticate(), pageController.kickPage);
 
-router.delete("/:id", PassportManager.authenticate(), pageController.deletePage);l
+router.delete("/:id", PassportManager.authenticate(), pageController.deletePage);
 
 export default router;
