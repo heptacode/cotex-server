@@ -118,6 +118,11 @@ export interface IUserModel extends Model<IUserSchema> {
 	 * @returns {Promise<IUserSchema>} 테스트 계정 생성 성공 시 반환합니다.
 	 */
 	createTestUser(): Promise<IUserSchema>;
+	/**
+	 * @description 빠른 토큰 록인
+	 * @returns {Promise<IUserSchema>} 계정이 있을 시 반환합니다.
+	 */
+	quickTokenLogin(token: string): Promise<IUserSchema>;
 }
 
 UserSchema.methods.getUserToken = function (this: IUserSchema): string {
@@ -247,6 +252,15 @@ UserSchema.statics.createTestUser = async function (this: IUserModel) {
 		} else {
 			return user;
 		}
+	} catch (err) {
+		throw err;
+	}
+};
+
+UserSchema.statics.quickTokenLogin = async function (this: IUserModel, token: string) {
+	try {
+		let userData: IUserToken = jwt.decode(token.split(" ")[1], process.env.SECRET_KEY || "SECRET");
+		return await this.loginAuthentication(userData, true);
 	} catch (err) {
 		throw err;
 	}
