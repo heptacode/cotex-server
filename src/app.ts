@@ -30,8 +30,7 @@ ProjectInitializeManager.checkEnv();
 
 app.use(
 	cors({
-		origin: NODE_ENV === "development" ? "*" : process.env.REQUEST_URI || "*", // FIXME: CORS 토큰 처리 안됨
-		credentials: true,
+		origin: "*",
 	})
 ); // CORS 설정 미들웨어
 app.use(helmet()); // 보안 미들웨어
