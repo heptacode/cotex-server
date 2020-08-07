@@ -3,11 +3,16 @@ import { ObjectID } from "bson";
 import { IUserSchema } from "./User";
 
 export interface Cell {
+	idx: number;
 	x: number;
 	y: number;
+	width: number;
+	height: number;
+	linkwith: number[];
 	text?: string; // 텍스트
 	img?: string; // 이미지 경로
 }
+
 export interface Permission {
 	user: ObjectID; // 유저 uuid
 	startX: number; // 시작좌표
