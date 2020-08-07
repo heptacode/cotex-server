@@ -4,11 +4,12 @@ import pageController from "./page.controller";
 
 const router = Router();
 
-router.post("/", PassportManager.authenticate(), pageController.createPage); // Create\
+router.post("/", PassportManager.authenticate(), pageController.createPage);
 
-router.post("/:id/invite", PassportManager.authenticate(), pageController.invitePage); // Delete
-router.post("/:id/kick", PassportManager.authenticate(), pageController.kickPage); // Delete
+router.post("/my-page", PassportManager.authenticate(), pageController.myPage);
+router.post("/:id/invite", PassportManager.authenticate(), pageController.invitePage);
+router.post("/:id/kick", PassportManager.authenticate(), pageController.kickPage);
 
-router.delete("/:id", PassportManager.authenticate(), pageController.deletePage); // Delete
+router.delete("/:id", PassportManager.authenticate(), pageController.deletePage);l
 
 export default router;

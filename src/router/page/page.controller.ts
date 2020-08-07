@@ -25,6 +25,23 @@ class PageController extends Controller {
 		}
 	}
 	/**
+	 * @description 내 페이지
+	 * @param {Request}req Express req
+	 * @param {Response}res Express res
+	 * @param {NextFunction}next Express next
+	 */
+	public async myPage(req: Request, res: Response, next: NextFunction) {
+		try {
+			let user = req.user as IUserSchema;
+
+			let pages = await Page.find({ owner: user._id });
+
+			return super.response(res, HTTPRequestCode.OK, pages, "페이지 가져오기 성공");
+		} catch (err) {
+			return next(err);
+		}
+	}
+	/**
 	 * @description 콜라보레이터 추가
 	 * @param {Request}req Express req
 	 * @param {Response}res Express res
