@@ -1,7 +1,7 @@
 {
 	"apps": [
 		{
-			"name": "NEM_TYPESCRIPT-V2",
+			"name": "CoTeX",
 			"script": "./dist/src/app.js",
 			"autorestart": true,
 			"watch": false
