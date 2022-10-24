@@ -9,7 +9,7 @@ class MongoDBHelper extends DBHelper<Mongoose.Connection> {
 	private db: Mongoose.Connection;
 
 	public readonly env: string = process.env.NODE_ENV || "development"; // 개발 환경
-	public readonly dbUri: string = process.env.DB_URI || process.env.MONGODB_URI || "mongodb://localhost/NEM-TEMPLATE-V2"; // DB URL
+	public readonly dbUri: string = process.env.DB_URI || process.env.MONGODB_URI || process.env.MONGO_URL || "mongodb://localhost/NEM-TEMPLATE-V2"; // DB URL
 	/**
 	 * @description MongoDB 활성화
 	 * @param {string}url MongoDB URL
